@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import TodoTable from './components/todo';
+import TodoTable from './components/todoTable';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
@@ -9,6 +9,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { withStyles } from '@material-ui/core/styles';
+import TodoBox from './components/todoList';
 
 const styles = theme => ({
   root: {
@@ -76,6 +77,7 @@ class App extends React.Component {
             })}
           </TableBody>
         </Table>
+        <TodoBox />
       </Paper>
     );
   }
