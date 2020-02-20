@@ -1,28 +1,47 @@
 import React from 'react';
 
-const todos = [
-    
-]
+class AddTodo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            tasks: [],
+            inputValue: ''
+        };
+        this.onChangeHandler = this.onChangeHandler.bind(this);
+        this.onKeyPressHandler = this.onKeyPressHandler.bind(this);
+    }
 
-class TodoList extends React.Component {
+    onChangeHandler(e) {
+        this.setState({
+            inputValue: e.target.value
+        });
+    }
+
+    onKeyPressHandler(e) {
+        if(e.keycode === 13) {
+            alert('enter!');
+            const newTasks = this.state.tasks.concat(this.state.inputValue);
+            this.setState({
+                inputValue: '',
+                tasks: newTasks
+            });
+        }
+    }
+
     render() {
         return (
-            <ul>
-
-            </ul>
+            <div>
+                <div>
+                    <input type="text" placeholder="Add something todo" value={this.state.inputValue} onChange={this.onChangeHandler} onKeyPress={this.onKeyPressHandler}></input>
+                </div>
+                <ul>
+                    {this.state.tasks.map(item => (
+                        <li>{item}</li>
+                    ))}
+                </ul>
+            </div>
         );
     }
 }
 
-class TodoBox extends React.Component {
-    render() {
-        return (
-          <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="Add new todo" id="input"></input>
-            <ul id="ul"><TodoList /></ul>
-          </form>
-        );
-    }
-}
-
-export default TodoBox;
+export default AddTodo;
